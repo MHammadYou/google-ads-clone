@@ -1,11 +1,12 @@
 import { Router } from "express";
+const fs = require('fs').promises;
 
 
 const router = Router();
 
 
-router.get('/', (req, res) => {
-  res.json({"msg": "/ route"});
+router.get('/', async (req, res) => {
+  res.send( await fs.readFile('./public/index.html', 'utf-8') );
 })
 
 
