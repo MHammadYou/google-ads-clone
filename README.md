@@ -2,6 +2,6 @@
 
 Minimal Node-Ts Setup 
 
-DEV
+DEV  
 terminal 1: tsc  
 terminal 2: npm run dev (nodemon)
