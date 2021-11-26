@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
 
 
-const schema = new mongoose.Schema(
+const userSchema = new mongoose.Schema(
   {
-
+    username: String,
+    password: String,
   }
 )
 
-const Users = mongoose.model('Users', schema);
+const Users = mongoose.model('Users', userSchema);
 
 export default Users;
