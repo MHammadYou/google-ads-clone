@@ -7,6 +7,7 @@ const adsSchema = new mongoose.Schema(
     path: String,
     advertiser: Advertisers,
     views: Number,
+    category: String,
     datetime: { type: Date, default: new Date()}
   }
 )
