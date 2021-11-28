@@ -1,4 +1,4 @@
-export { default as Ads } from "./ads";
-export { default as Advertisers } from "./advertisers";
-export { default as Publishers } from "./publishers";
-export { default as Users } from "./users";
+export { default as AdsModel } from "./ads";
+export { default as AdvertisersModel } from "./advertisers";
+export { default as PublishersModel } from "./publishers";
+export { default as UsersModel } from "./users";
