@@ -8,7 +8,9 @@ const adsSchema = new mongoose.Schema(
     advertiser: Advertisers,
     views: Number,
     category: String,
-    datetime: { type: Date, default: new Date()}
+    is_active: Boolean,
+    time_left: { type: Date, default: 0},
+    created_at: { type: Date, default: new Date()}
   }
 )
 
