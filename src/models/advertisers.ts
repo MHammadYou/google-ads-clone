@@ -5,6 +5,7 @@ import Users from "./users";
 const schema = new mongoose.Schema(
   {
     user_id: Users,
+    paid: Number
   }
 )
 
