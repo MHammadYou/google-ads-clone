@@ -9,4 +9,8 @@ router.get('/login', async (req, res) => {
   res.send( await fs.readFile('./public/login.html', 'utf-8') );
 })
 
+router.post('/login', (req, res) => {
+  res.send("Post req on /login route");
+})
+
 export default router;
