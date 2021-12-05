@@ -1,0 +1,1 @@
+A very basic ad delivering network, similar to google ads platform
