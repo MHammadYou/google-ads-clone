@@ -6,7 +6,7 @@ const router = Router();
 
 
 router.get('/signup', async (req, res) => {
-  res.send( await fs.readFile('./public/signup.html', 'utf-8') );
+  res.send( await fs.readFile('./public/users/signup.html', 'utf-8') );
 })
 
 router.post('/signup', (req, res) => {

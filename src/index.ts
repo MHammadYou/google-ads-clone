@@ -13,8 +13,8 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
 
 app.use('/', homeRoute);
-app.use('/users/', signupRoute);
-app.use('/users/', loginRoute);
+app.use('/', signupRoute);
+app.use('/', loginRoute);
 
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
