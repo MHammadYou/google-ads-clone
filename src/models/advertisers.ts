@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 import Users from "./users";
 
 
-const schema = new mongoose.Schema(
+const adsSchema = new mongoose.Schema(
   {
     user_id: Users,
     balance: Number
   }
 )
 
-const Advertisers = mongoose.model('Advertisers', schema);
+const Advertisers = mongoose.model('Advertisers', adsSchema);
 
 export default Advertisers;
