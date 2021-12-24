@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
-import Advertisers from "./advertisers";
+import Users from "./users";
 
 
 const adsSchema = new mongoose.Schema(
   {
     path: String,
-    advertiser: Advertisers,
-    views: Number,
+    user: Users,
+    views: { type: Number, default: 0 },
     category: String,
     is_active: Boolean,
     created_at: { type: Date, default: new Date()}
