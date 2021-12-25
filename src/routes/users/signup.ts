@@ -1,5 +1,7 @@
 import { Router } from "express";
-const fs = require('fs').promises;
+import { readFile } from "fs/promises";
+
+import { UsersModel } from "../../models";
 
 const router = Router();
 
