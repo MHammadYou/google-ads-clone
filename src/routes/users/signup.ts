@@ -7,7 +7,12 @@ const router = Router();
 
 
 router.get('/signup', async (req, res) => {
-  res.send( await fs.readFile('./public/users/signup.html', 'utf-8') );
+  res.send( await readFile('./public/users/signup.html', 'utf-8') );
+})
+
+
+router.post('/signup', (req, res) => {
+  res.send("Post req on /signup")
 })
 
 export default router;
