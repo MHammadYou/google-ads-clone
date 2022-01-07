@@ -12,7 +12,9 @@ const PORT = process.env.PORT || 5000;
 
 const mongoURI = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000";
 
-mongoose.connect(mongoURI).then(() => console.log("Connection established"));
+mongoose.connect(mongoURI)
+  .then(() => console.log("Connection established"))
+  .catch(err => console.log(err));
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "../public")));
