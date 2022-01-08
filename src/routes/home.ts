@@ -1,12 +1,12 @@
 import { Router } from "express";
-const fs = require('fs').promises;
+import { readFile } from "fs/promises";
 
 
 const router = Router();
 
 
 router.get('/', async (req, res) => {
-  res.send( await fs.readFile('./public/index.html', 'utf-8') );
+  res.send( await readFile('./public/index.html', 'utf-8') );
 })
 
 
