@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import path from "path";
 import mongoose from "mongoose";
 
-import { homeRoute, signupRoute, loginRoute, contentRoute } from "./routes";
+import { homeRoute, signupRoute, loginRoute, contentRoute, createAdRoute } from "./routes";
 
 dotenv.config();
 
@@ -23,6 +23,7 @@ app.use('/', homeRoute);
 app.use('/', signupRoute);
 app.use('/', loginRoute);
 app.use('/', contentRoute);
+app.use('/', createAdRoute)
 
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
