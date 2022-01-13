@@ -6,7 +6,7 @@ router.post('/create', (req, res) => {
   res.send("create");
 })
 
-router.get('/ads', (req, res) => {
+router.get('/', (req, res) => {
   res.send("")
 })
 
