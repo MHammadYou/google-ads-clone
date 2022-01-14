@@ -7,7 +7,11 @@ router.post('/create', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-  res.send("")
+  res.send("");
+})
+
+router.post('/update', (req, res) => {
+  res.send("update route");
 })
 
 
