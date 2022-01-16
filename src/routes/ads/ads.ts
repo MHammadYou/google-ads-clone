@@ -10,8 +10,12 @@ router.post('/create', (req, res) => {
   res.send("create");
 })
 
-router.post('/update', (req, res) => {
+router.post('/update/id', (req, res) => {
   res.send("update route");
+})
+
+router.get('/delete/id', (req, res) => {
+  res.send("Delete route");
 })
 
 
