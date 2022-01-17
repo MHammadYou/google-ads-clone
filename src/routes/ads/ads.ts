@@ -6,6 +6,10 @@ router.get('/', (req, res) => {
   res.send("Default route for ads");
 })
 
+router.get('/id', (req, res) => {
+  res.send("Default route for ad");
+})
+
 router.post('/create', (req, res) => {
   res.send("create");
 })
