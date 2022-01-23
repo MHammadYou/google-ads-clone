@@ -15,8 +15,8 @@ router.post('/create', async (req, res) => {
   res.send( await readFile('./public/ads/create-ad.html', 'utf-8') );
 })
 
-router.post('/update/id', (req, res) => {
-  res.send("update route");
+router.post('/update/id', async (req, res) => {
+  res.send( await readFile("./public/ads/update.html", "utf-8") );
 })
 
 router.get('/delete/id', (req, res) => {
