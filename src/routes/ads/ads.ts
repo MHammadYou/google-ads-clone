@@ -7,8 +7,8 @@ router.get('/', async (req, res) => {
   res.send( await readFile('./public/ads/ads.html', 'utf-8') );
 })
 
-router.get('/id', (req, res) => {
-  res.send("Default route for ad");
+router.get('/id', async (req, res) => {
+  res.send( await readFile("./public/ads/ads.html", 'utf-8') );
 })
 
 router.post('/create', async (req, res) => {
