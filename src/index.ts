@@ -3,13 +3,13 @@ import dotenv from "dotenv";
 import path from "path";
 import mongoose from "mongoose";
 
-// import { homeRoute, signupRoute, loginRoute, contentRoute, adsRoutes } from "./routes";
-import { homeRoute, signupRoute } from "./routes";
+import { homeRoute, signupRoute, loginRoute, contentRoute, adsRoutes } from "./routes";
+// import { homeRoute, signupRoute } from "./routes";
 
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5000;
 const VIEWS_DIR = path.join(__dirname, "../public");
 
 
@@ -26,9 +26,9 @@ app.use(express.json());
 
 app.use('/', homeRoute);
 app.use('/', signupRoute);
-// app.use('/', loginRoute);
-// app.use('/', contentRoute);
-// app.use('/ads', adsRoutes);
+app.use('/', loginRoute);
+app.use('/', contentRoute);
+app.use('/ads', adsRoutes);
 
 
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
