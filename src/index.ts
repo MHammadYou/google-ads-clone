@@ -1,6 +1,5 @@
 import express from "express";
 import dotenv from "dotenv";
-import path from "path";
 import mongoose from "mongoose";
 
 import { homeRoute, signupRoute, loginRoute, contentRoute, adsRoutes } from "./routes";
@@ -10,11 +9,9 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const VIEWS_DIR = path.join(__dirname, "../public");
 
 
 app.set('view engine', 'ejs');
-app.set('views', VIEWS_DIR);
 
 // const mongoURI = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000";
 //
