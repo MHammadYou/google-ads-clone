@@ -20,7 +20,12 @@ app.set('view engine', 'ejs');
 //   .catch(err => console.log(err));
 
 app.use(express.json());
-app.use(express.static(__dirname + 'static'));
+app.use(express.static('static'));
+//
+// app.use((req, res, next) => {
+//   console.log('static');
+//   next();
+// })
 
 app.use('/', homeRoute);
 app.use('/users/', signupRoute);
