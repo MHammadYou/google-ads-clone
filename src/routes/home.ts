@@ -4,7 +4,8 @@ const router = Router();
 
 router.get('/', async (req, res) => {
   const data = {
-    title: "Ads Platform"
+    title: "Ads Platform",
+    dir: "."
   }
   res.render("index", data);
 })

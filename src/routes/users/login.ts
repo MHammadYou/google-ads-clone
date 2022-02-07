@@ -5,7 +5,11 @@ const router = Router();
 
 
 router.get('/login', async (req, res) => {
-  res.render('users/login');
+  const data = {
+    title: "Login",
+    dir: ".."
+  }
+  res.render('users/login', data);
 })
 
 export default router;

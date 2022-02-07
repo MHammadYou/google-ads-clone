@@ -4,7 +4,11 @@ const router = Router();
 
 
 router.get('/signup', (req, res) => {
-  res.render('users/signup');
+  const data = {
+    title: "Signup",
+    dir: ".."
+  }
+  res.render('users/signup', data);
 })
 
 export default router;

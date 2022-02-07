@@ -3,7 +3,7 @@
         <div class="container px-4 mx-auto md:flex md:items-center">
 
             <div class="flex justify-between items-center">
-                <a href="#" class="font-bold text-xl text-indigo-600">ADS PLATFORM</a>
+                <a href="<% '/' %>" class="font-bold text-xl text-indigo-600">ADS PLATFORM</a>
                 <button class="border border-solid border-gray-600 px-3 py-1 rounded text-gray-600 opacity-50 hover:opacity-75 md:hidden" id="navbar-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -14,8 +14,8 @@
 
                 <!-- if the user isn't logged in -->
                 <% if (true) { %>
-                    <a href="#" class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300">LOGIN</a>
-                    <a href="#" class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-solid border-indigo-600 rounded hover:bg-indigo-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">SIGNUP</a>
+                    <a href="<% 'users/login' %>" class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300">LOGIN</a>
+                    <a href="<% 'users/signup' %>" class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-solid border-indigo-600 rounded hover:bg-indigo-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">SIGNUP</a>
                 <% } else { %>
                 <a href="#" class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-transparent rounded hover:bg-indigo-100 hover:text-indigo-700 transition-colors duration-300">CREATE</a>
                 <a href="#" class="p-2 lg:px-4 md:mx-2 text-indigo-600 text-center border border-solid border-indigo-600 rounded hover:bg-indigo-600 hover:text-white transition-colors duration-300 mt-1 md:mt-0 md:ml-1">LOGOUT</a>
