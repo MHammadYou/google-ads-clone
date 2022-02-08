@@ -14,6 +14,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(express.static('static'));
+app.use(express.urlencoded({extended: true}));
 
 app.use('/', homeRoute);
 app.use('/users/', signupRoute);
