@@ -3,15 +3,27 @@ import { Router } from "express";
 const router = Router();
 
 router.get('/', async (req, res) => {
-  res.render('ads/ads');
+  const data = {
+    title: "Ads",
+    dir: ".."
+  }
+  res.render('ads/ads', data);
 })
 
 router.get('/id', async (req, res) => {
-  res.render('ads/ads');
+  const data = {
+    title: "Ads/id",
+    dir: ".."
+  }
+  res.render('ads/ads', data);
 })
 
 router.get('/create', async (req, res) => {
-  res.render('ads/create-ad');
+  const data = {
+    title: "Create ad",
+    dir: ".."
+  }
+  res.render('ads/create-ad', data);
 })
 
 router.post('/create', async (req, res) => {
@@ -19,7 +31,11 @@ router.post('/create', async (req, res) => {
 })
 
 router.get('/update/id', async (req, res) => {
-  res.render('ads/update');
+  const data = {
+    title: "Update ad",
+    dir: "../.."
+  }
+  res.render('ads/update', data);
 })
 
 router.post('/update/id', async (req, res) => {
