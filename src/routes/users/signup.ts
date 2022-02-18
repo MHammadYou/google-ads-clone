@@ -11,4 +11,8 @@ router.get('/signup', (req, res) => {
   res.render('users/signup', data);
 })
 
+router.post('/signup', (req, res) => {
+  res.send("You made a post request on post route");
+})
+
 export default router;
