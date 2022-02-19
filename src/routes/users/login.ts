@@ -13,7 +13,7 @@ router.get('/login', async (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  console.log("You made a post request");
+  res.send("You made a post request on /login");
 })
 
 export default router;
