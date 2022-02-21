@@ -2,7 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
-import { homeRoute, signupRoute, loginRoute, contentRoute, adsRoutes } from "./routes";
+import { homeRoute, signupRoute, loginRoute, logoutRoute, contentRoute, adsRoutes } from "./routes";
 
 dotenv.config();
 
@@ -19,6 +19,7 @@ app.use(express.urlencoded({extended: true}));
 app.use('/', homeRoute);
 app.use('/users/', signupRoute);
 app.use('/users/', loginRoute);
+app.use('/users/', logoutRoute);
 app.use('/', contentRoute);
 app.use('/ads', adsRoutes);
 
