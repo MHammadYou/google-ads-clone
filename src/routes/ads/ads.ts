@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   res.render('ads/ads', data);
 })
 
-router.get('/id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const data = {
     title: "Ads/id",
     dir: ".."
@@ -30,7 +30,7 @@ router.post('/create', async (req, res) => {
   res.send("You made a post request on create route");
 })
 
-router.get('/update/id', async (req, res) => {
+router.get('/update/:id', async (req, res) => {
   const data = {
     title: "Update ad",
     dir: "../.."
@@ -38,11 +38,11 @@ router.get('/update/id', async (req, res) => {
   res.render('ads/update', data);
 })
 
-router.post('/update/id', async (req, res) => {
+router.post('/update/:id', async (req, res) => {
   res.send("You made a post request on update route");
 })
 
-router.get('/delete/id', (req, res) => {
+router.get('/delete/:id', (req, res) => {
   res.send("Delete route");
 })
 
