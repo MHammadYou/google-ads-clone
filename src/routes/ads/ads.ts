@@ -13,7 +13,8 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   const data = {
     title: "Ads/id",
-    dir: ".."
+    dir: "..",
+    id: req.params.id
   }
   res.render('ads/ads', data);
 })
@@ -21,7 +22,7 @@ router.get('/:id', async (req, res) => {
 router.get('/create', async (req, res) => {
   const data = {
     title: "Create ad",
-    dir: ".."
+    dir: "..",
   }
   res.render('ads/create-ad', data);
 })
@@ -33,7 +34,8 @@ router.post('/create', async (req, res) => {
 router.get('/update/:id', async (req, res) => {
   const data = {
     title: "Update ad",
-    dir: "../.."
+    dir: "../..",
+    id: req.params.id
   }
   res.render('ads/update', data);
 })
