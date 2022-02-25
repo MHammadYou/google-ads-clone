@@ -11,7 +11,7 @@ router.get('/login', async (req, res) => {
 })
 
 router.post('/login', (req, res) => {
-  res.send("You made a post request on /login");
+  res.json({'email': req.body.email});
 })
 
 export default router;

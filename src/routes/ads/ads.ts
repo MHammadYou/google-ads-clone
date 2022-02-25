@@ -28,7 +28,7 @@ router.get('/create', async (req, res) => {
 })
 
 router.post('/create', async (req, res) => {
-  res.send("You made a post request on create route");
+
 })
 
 router.get('/update/:id', async (req, res) => {
