@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 
-import { homeRoute, signupRoute, loginRoute, logoutRoute, contentRoute, adsRoutes } from "./routes";
+import { homeRoute, signupRoute, loginRoute, logoutRoute, profileRoute, contentRoute, adsRoutes } from "./routes";
 
 dotenv.config();
 
@@ -22,6 +22,7 @@ app.use('/', homeRoute);
 app.use('/users/', signupRoute);
 app.use('/users/', loginRoute);
 app.use('/users/', logoutRoute);
+app.use('/users/', profileRoute);
 app.use('/', contentRoute);
 app.use('/ads', adsRoutes);
 

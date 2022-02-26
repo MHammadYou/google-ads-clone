@@ -2,11 +2,12 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get('/logout', async (req, res) => {
+router.get('/profile', (req, res) => {
   const data = {
-
+    title: "Profile",
+    dir: ".."
   }
-  res.send("You made a get request on /logout")
+  res.render('users/profile', data);
 })
 
 export default router;
