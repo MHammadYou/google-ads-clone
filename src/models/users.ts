@@ -3,9 +3,9 @@ import mongoose from "mongoose";
 
 const usersSchema = new mongoose.Schema(
   {
-    username: { type: String, unique: true },
-    email: { type: String, unique: true },
-    password: { type: String, minLength: 8 },
+    username: { type: String, unique: true, required: true },
+    email: { type: String, unique: true, required: true },
+    password: { type: String, minLength: 8, required: true },
     accountType: { type: String, enum: ["advertiser", "publisher"] },
     balance: { type: Number, default: 0 }
   }
