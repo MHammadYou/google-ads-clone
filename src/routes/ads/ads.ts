@@ -10,14 +10,14 @@ router.get('/', async (req, res) => {
   res.render('ads/ads', data);
 })
 
-router.get('/:id', async (req, res) => {
-  const data = {
-    title: "Ads/id",
-    dir: "..",
-    id: req.params.id
-  }
-  res.render('ads/ads', data);
-})
+// router.get('/:id', async (req, res) => {
+//   const data = {
+//     title: "Ads/id",
+//     dir: "..",
+//     id: req.params.id
+//   }
+//   res.render('ads/ads', data);
+// })
 
 router.get('/create', async (req, res) => {
   const data = {
