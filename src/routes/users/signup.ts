@@ -13,18 +13,18 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-  const data = {
-    username: req.body.username,
-    email: req.body.email,
-    password: req.body.password,
-    accountType: "advertiser",
-    balance: 0,
-  }
+  // const data = {
+  //   username: req.body.username,
+  //   email: req.body.email,
+  //   password: req.body.password,
+  //   accountType: "advertiser",
+  //   balance: 0,
+  // }
 
-  const _data = {
-    username: "username",
-  }
-  const abc = new UsersModel(_data);
+  // const _data = {
+  //   username: "username",
+  // }
+  // const users = new UsersModel({abc: "username"});
   // user.save()
   //   .then((response) => {
   //     res.send(response);

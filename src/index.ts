@@ -4,6 +4,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 
 import { homeRoute, signupRoute, loginRoute, logoutRoute, profileRoute, contentRoute, adsRoutes } from "./routes";
+import TestRoute from "./routes/users/test_route";
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use('/users/', logoutRoute);
 app.use('/users/', profileRoute);
 app.use('/', contentRoute);
 app.use('/ads', adsRoutes);
+app.use('/', TestRoute);
 
 app.use((req, res) => {
   res.status(404).send("No content on this route")
