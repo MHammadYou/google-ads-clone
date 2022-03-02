@@ -1,5 +1,8 @@
 import { Router } from "express";
-import { UsersModel } from "../../models";
+import UserModel from "../../models/users";
+import bcrypt from "bcrypt";
+import has = Reflect.has;
+
 
 const router = Router();
 
@@ -13,26 +16,29 @@ router.get('/signup', (req, res) => {
 })
 
 router.post('/signup', (req, res) => {
-  // const data = {
-  //   username: req.body.username,
-  //   email: req.body.email,
-  //   password: req.body.password,
-  //   accountType: "advertiser",
-  //   balance: 0,
-  // }
 
-  // const _data = {
-  //   username: "username",
-  // }
-  // const users = new UsersModel({abc: "username"});
-  // user.save()
-  //   .then((response) => {
-  //     res.send(response);
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //   })
-  res.send("Post req")
+  const password = req.body.password;
+
+  bcrypt.hash(password, 10, function(err, hash) {
+
+    const data = {
+      username: req.body.username,
+      email: req.body.email,
+      password: hash,
+      accountType: "advertiser",
+      balance: 0,
+    }
+
+    const user = new UserModel(data);
+    user.save()
+      .then((response) => {
+        res.send(response);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+
+  })
 })
 
 export default router;

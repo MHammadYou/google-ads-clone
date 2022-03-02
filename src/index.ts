@@ -4,13 +4,12 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 
 import { homeRoute, signupRoute, loginRoute, logoutRoute, profileRoute, contentRoute, adsRoutes } from "./routes";
-import TestRoute from "./routes/users/test_route";
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const DB_URI = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000";
+const DB_URI = "mongodb://127.0.0.1:27017/ads-test-db";
 
 app.set('view engine', 'ejs');
 
@@ -18,7 +17,7 @@ app.use(express.json());
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
-mongoose.connect(DB_URI,  { useNewUrlParser: true, useUnifiedTopology: true } )
+mongoose.connect(DB_URI,  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false } )
   .then(res => {
     console.log("Connected to the database");
     app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
@@ -35,7 +34,7 @@ app.use('/users/', logoutRoute);
 app.use('/users/', profileRoute);
 app.use('/', contentRoute);
 app.use('/ads', adsRoutes);
-app.use('/', TestRoute);
+
 
 app.use((req, res) => {
   res.status(404).send("No content on this route")
