@@ -22,7 +22,7 @@ router.post('/signup', async (req, res) => {
     username: req.body.username,
     email: req.body.email,
     password: hash,
-    accountType: "publisher",
+    accountType: req.body.accountType,
   }
 
   const user = new UserModel(data);

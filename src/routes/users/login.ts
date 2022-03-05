@@ -16,8 +16,14 @@ router.post('/login', async (req, res) => {
     email: req.body.email,
     password: req.body.password
   }
-  const response = await UserModel.findOne({'email': data.email})
-  res.send(response);
+
+  try {
+    const response = await UserModel.findOne({'email': data.email})
+    res.send(response);
+  } catch (error) {
+    res.send(error);
+  }
+
 })
 
 export default router;
