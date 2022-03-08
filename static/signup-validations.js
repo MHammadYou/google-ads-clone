@@ -7,5 +7,3 @@ const validateEmail = inputEmail => {
   }
 }
 
-
-

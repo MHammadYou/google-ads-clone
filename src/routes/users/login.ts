@@ -1,5 +1,6 @@
 import { Router } from "express";
 import UserModel from "../../models/users";
+import bcrypt from "bcrypt";
 
 const router = Router();
 
@@ -18,9 +19,17 @@ router.post('/login', async (req, res) => {
   }
 
   try {
-    const response = await UserModel.findOne({'email': data.email})
-    res.send(response);
+    const response: any = await UserModel.findOne({'email': data.email})
+    const match = await bcrypt.compare(data.password, response.password);
+
+    if (match) {
+      res.send("Login successful");
+      return;
+    }
+    res.send("Invalid credentials");
+
   } catch (error) {
+    console.log(error)
     res.send(error);
   }
 
