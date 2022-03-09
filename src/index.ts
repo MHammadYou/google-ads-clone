@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
+import session from "express-session";
 
 import { homeRoute, signupRoute, loginRoute, logoutRoute, profileRoute, contentRoute, adsRoutes } from "./routes";
 
@@ -16,6 +17,15 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(
+  session({
+    secret: `${process.env.SECRET_KEY}`,
+    saveUninitialized: true,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 },
+    resave: false,
+  })
+);
 
 mongoose.connect(DB_URI,  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false } )
   .then(res => {
