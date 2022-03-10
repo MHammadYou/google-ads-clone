@@ -1,7 +1,6 @@
 import { Router } from "express";
 import UserModel from "../../models/users";
 import bcrypt from "bcrypt";
-import session from "express-session";
 
 const router = Router();
 
@@ -29,12 +28,12 @@ router.post('/login', async (req, res) => {
       if (match) {
         const session: any = req.session;
         session.user = user.username;
-        res.send("Login successful");
-        return;
+        res.redirect('/');
+      } else {
+        res.redirect('/users/login');
       }
-      res.send("Invalid credentials");
     } else {
-      res.send("No user found with this email");
+      res.redirect('/users/login');
     }
   } catch (error) {
     console.log(error)

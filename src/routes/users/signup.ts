@@ -6,9 +6,12 @@ const router = Router();
 
 
 router.get('/signup', (req, res) => {
+  const session: any = req.session;
+  const user = session.user;
   const data = {
     title: "Signup",
-    dir: ".."
+    dir: "..",
+    user
   }
   res.render('users/signup', data);
 })
@@ -26,9 +29,14 @@ router.post('/signup', async (req, res) => {
   }
 
   const user = new UserModel(data);
-  const response = await user.save();
-  res.send(response);
-
+  try {
+    await user.save();
+    const session: any = req.session;
+    session.user = data.username;
+    res.redirect('/');
+  } catch (error) {
+    res.send(error);
+  }
 })
 
 export default router;
