@@ -4,7 +4,6 @@ import bcrypt from "bcrypt";
 
 const router = Router();
 
-
 router.get('/signup', (req, res) => {
   const session: any = req.session;
   const user = session.user;

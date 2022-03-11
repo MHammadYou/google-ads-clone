@@ -3,9 +3,12 @@ import { Router } from "express";
 const router = Router();
 
 router.get('/', async (req, res) => {
+  const session: any = req.session;
+  const user = session.user;
   const data = {
     title: "Ads",
-    dir: ".."
+    dir: "..",
+    user
   }
   res.render('ads/ads', data);
 })
@@ -20,9 +23,12 @@ router.get('/', async (req, res) => {
 // })
 
 router.get('/create', async (req, res) => {
+  const session: any = req.session;
+  const user = session.user;
   const data = {
     title: "Create ad",
     dir: "..",
+    user
   }
   res.render('ads/create-ad', data);
 })
@@ -32,10 +38,13 @@ router.post('/create', async (req, res) => {
 })
 
 router.get('/update/:id', async (req, res) => {
+  const session: any = req.session;
+  const user = session.user;
   const data = {
     title: "Update ad",
     dir: "../..",
-    id: req.params.id
+    id: req.params.id,
+    user
   }
   res.render('ads/update', data);
 })
