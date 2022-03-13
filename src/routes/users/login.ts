@@ -7,6 +7,12 @@ const router = Router();
 router.get('/login', async (req, res) => {
   const session: any = req.session;
   const user = session.user;
+
+  if (user) {
+    res.redirect('/');
+    return;
+  }
+
   const data = {
     title: "Login",
     dir: "..",

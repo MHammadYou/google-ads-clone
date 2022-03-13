@@ -5,6 +5,12 @@ const router = Router();
 router.get('/profile', (req, res) => {
   const session: any = req.session;
   const user = session.user;
+
+  if (!user) {
+    res.redirect('/users/login');
+    return;
+  }
+
   const data = {
     title: "Profile",
     dir: "..",
