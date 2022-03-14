@@ -1,18 +1,19 @@
 import mongoose from "mongoose";
 import Users from "./users";
+import Categories from "./categories";
 
 
 const adsSchema = new mongoose.Schema(
   {
     path: String,
-    user: Users,
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
+    category: { type: mongoose.Schema.Types.ObjectId, ref: 'Categories' },
     views: { type: Number, default: 0 },
-    categories: { type: Array, default: [] },
-    is_active: Boolean,
+    is_active: { type: Boolean, default: false },
   },
   { timestamps: true }
 )
 
-const Ads = mongoose.model('Ads', adsSchema);
+const AdsModel = mongoose.model('Ads', adsSchema);
 
-export default Ads;
+export default AdsModel;

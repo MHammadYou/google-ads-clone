@@ -4,7 +4,7 @@ import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import session from "express-session";
 
-import { homeRoute, signupRoute, loginRoute, logoutRoute, profileRoute, contentRoute, adsRoutes } from "./routes";
+import handleRoutes from "./routes";
 
 dotenv.config();
 
@@ -37,14 +37,7 @@ mongoose.connect(DB_URI,  { useNewUrlParser: true, useUnifiedTopology: true, use
   })
 
 
-app.use('/', homeRoute);
-app.use('/users/', signupRoute);
-app.use('/users/', loginRoute);
-app.use('/users/', logoutRoute);
-app.use('/users/', profileRoute);
-app.use('/', contentRoute);
-app.use('/ads', adsRoutes);
-
+handleRoutes(app);
 
 app.use((req, res) => {
   res.status(404).send("No content on this route")
