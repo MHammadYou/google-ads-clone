@@ -4,9 +4,7 @@ import loginRoute from "./users/login";
 import logoutRoute from "./users/logout";
 import profileRoute from "./users/profile";
 import contentRoute from "./content";
-import { adViewRoutes, adUpdateRoute, adDeleteRoute } from "./ads";
-import adCreateRoute from "./ads/create";
-
+import { adViewRoutes, adCreateRoute, adUpdateRoute, adDeleteRoute } from "./ads";
 
 const handleRoutes = (app: any) => {
   app.use('/', homeRoute);

@@ -14,6 +14,6 @@
 // export default router;
 
 export { default as adViewRoutes } from "./ads";
-// export { default as adCreateRoute } from "./create";
+export { default as adCreateRoute } from "./create";
 export { default as adUpdateRoute } from "./update";
 export { default as adDeleteRoute } from "./delete";

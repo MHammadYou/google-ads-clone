@@ -1,6 +1,7 @@
 import { Router } from "express";
 import AdModel from "../../models/ads";
 import UsersModel from "../../models/users";
+import CategoriesModel from "../../models/categories";
 
 const router = Router();
 
@@ -14,10 +15,13 @@ router.get('/create', async (req, res) => {
     return;
   }
 
+  const categories = await CategoriesModel.find();
+
   const data = {
     title: "Create ad",
     dir: "..",
-    user
+    user,
+    categories
   }
   res.render('ads/create-ad', data);
 })
@@ -38,7 +42,7 @@ router.post('/create', async (req, res) => {
   const data = {
     path,
     category,
-    user: user.id
+    user: user._id
   }
 
   // const newAd = new AdModel(data)
