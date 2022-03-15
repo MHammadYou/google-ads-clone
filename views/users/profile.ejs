@@ -3,5 +3,10 @@
 <%- include('../partials/head') %>
 <body>
 <%-  include('../partials/header') %>
-
+<h1>Username: <%= user.username %></h1>
+<h3>Ads by this user</h3>
+<% for (let i = 0; i < ads.length; i++) { %>
+    path: <%= ads[i].path %> <br>
+    <a href="/ads/update/<%= ads[i]._id %>">Edit</a><br>
+<% } %>
 </body>

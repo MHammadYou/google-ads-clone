@@ -1,4 +1,6 @@
 import { Router } from "express";
+import AdsModel from "../../models/ads";
+import CategoriesModel from "../../models/categories";
 
 const router = Router();
 
@@ -12,11 +14,29 @@ router.get('/update/:id', async (req, res) => {
     return;
   }
 
+  const adId = req.params.id;
+  const ad: any = await AdsModel.findOne({ _id: adId });
+
+  if (!ad) {
+    res.send("No ad with this id");
+  }
+
+  const category: any = await CategoriesModel.findOne({ _id: ad.category });
+  const selectedCategory = category.category;
+
+  const categories = await CategoriesModel.find();
+
+
+
   const data = {
     title: "Update ad",
     dir: "../..",
     id: req.params.id,
-    user
+    user,
+    ad,
+    categories,
+    selectedCategory
+
   }
   res.render('ads/update', data);
 })
@@ -30,7 +50,20 @@ router.post('/update/:id', async (req, res) => {
     return;
   }
 
-  res.send("You made a post request on update route");
+  const adId = req.params.id;
+
+
+  const { path, category } = req.body;
+
+  const categoryObject: any = await CategoriesModel.findById(category);
+
+
+  const ad: any = await AdsModel.findByIdAndUpdate(adId, {path, category: categoryObject});
+
+  if (!ad) {
+    res.send("No ad with this id");
+  }
+  res.redirect('/users/profile');
 })
 
 export default router;
