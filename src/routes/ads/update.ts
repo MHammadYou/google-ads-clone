@@ -15,18 +15,16 @@ router.get('/update/:id', async (req, res) => {
   }
 
   const adId = req.params.id;
-  const ad: any = await AdsModel.findOne({ _id: adId });
+  const ad: any = await AdsModel.findById(adId);
 
   if (!ad) {
     res.send("No ad with this id");
   }
 
-  const category: any = await CategoriesModel.findOne({ _id: ad.category });
+  const category: any = await CategoriesModel.findById(ad.category);
   const selectedCategory = category.category;
 
   const categories = await CategoriesModel.find();
-
-
 
   const data = {
     title: "Update ad",
@@ -36,7 +34,6 @@ router.get('/update/:id', async (req, res) => {
     ad,
     categories,
     selectedCategory
-
   }
   res.render('ads/update', data);
 })
@@ -51,17 +48,13 @@ router.post('/update/:id', async (req, res) => {
   }
 
   const adId = req.params.id;
-
-
   const { path, category } = req.body;
 
-  const categoryObject: any = await CategoriesModel.findById(category);
-
-
-  const ad: any = await AdsModel.findByIdAndUpdate(adId, {path, category: categoryObject});
+  const ad: any = await AdsModel.findByIdAndUpdate(adId, { path, category });
 
   if (!ad) {
     res.send("No ad with this id");
+    return;
   }
   res.redirect('/users/profile');
 })

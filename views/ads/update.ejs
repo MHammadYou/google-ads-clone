@@ -4,7 +4,7 @@
 <body>
 <%-  include('../partials/header') %>
     <div class="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 container mx-auto mt-16">
-        <form class="space-y-5" action="/ads/update/id" method="post">
+        <form class="space-y-5" action="/ads/update/<%= id %>" method="post">
             <div class="m-4">
                 <label class="inline-block mb-2 text-gray-500">File Upload</label>
                 <div class="flex items-center justify-center w-full">
@@ -19,7 +19,7 @@
                             <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
                                 Upload your Ad picture</p>
                         </div>
-                        <input type="file" class="opacity-0" value="<%= ad.path %>" />
+                        <input name="path" type="file" class="opacity-0" value="<%= ad.path %>" />
                     </label>
                 </div>
                 <div class="mt-3">

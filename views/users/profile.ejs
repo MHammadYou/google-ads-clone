@@ -7,6 +7,7 @@
 <h3>Ads by this user</h3>
 <% for (let i = 0; i < ads.length; i++) { %>
     path: <%= ads[i].path %> <br>
-    <a href="/ads/update/<%= ads[i]._id %>">Edit</a><br>
+    <a href="/ads/update/<%= ads[i]._id %>">Edit</a>
+    <a href="/ads/delete/<%= ads[i]._id %>">Delete</a><br>
 <% } %>
 </body>

@@ -49,7 +49,7 @@ router.post('/create', async (req, res) => {
   const newAd = new AdModel(data);
   try {
     await newAd.save();
-    res.send("Ad created successfully");
+    res.redirect("/users/profile");
   } catch (error) {
     res.send(error);
   }
