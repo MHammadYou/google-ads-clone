@@ -50,7 +50,13 @@ router.post('/update/:id', async (req, res) => {
   const adId = req.params.id;
   const { path, category } = req.body;
 
-  const ad: any = await AdsModel.findByIdAndUpdate(adId, { path, category });
+  let ad;
+
+  if (!path) {
+    ad = await AdsModel.findByIdAndUpdate(adId, { category });
+  } else {
+    ad = await AdsModel.findByIdAndUpdate(adId, { path, category });
+  }
 
   if (!ad) {
     res.send("No ad with this id");

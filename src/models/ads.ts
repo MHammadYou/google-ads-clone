@@ -3,7 +3,16 @@ import Users from "./users";
 import Categories from "./categories";
 
 
-const adsSchema = new mongoose.Schema(
+interface Ad {
+    path: string;
+    user: mongoose.Schema.Types.ObjectId;
+    category: mongoose.Schema.Types.ObjectId;
+    views: number;
+    is_active: boolean
+}
+
+
+const adsSchema = new mongoose.Schema<Ad>(
   {
     path: String,
     user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users' },
@@ -14,6 +23,7 @@ const adsSchema = new mongoose.Schema(
   { timestamps: true }
 )
 
-const AdsModel = mongoose.model('Ads', adsSchema);
+const AdsModel = mongoose.model<Ad>('Ads', adsSchema);
 
 export default AdsModel;
+export { Ad };
