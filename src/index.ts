@@ -30,7 +30,7 @@ app.use(
 mongoose.connect(DB_URI,  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false } )
   .then(res => {
     console.log("Connected to the database");
-    app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));
+    app.listen(PORT, () => console.log(`Listening on https//localhost: ${PORT}`));
   })
   .catch(err => {
     console.log(err);
