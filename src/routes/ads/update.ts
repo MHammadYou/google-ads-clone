@@ -1,6 +1,8 @@
 import { Router } from "express";
 import AdsModel from "../../models/ads";
+import upload from "../../multer_config";
 import CategoriesModel from "../../models/categories";
+import { deleteFile } from "../../util";
 
 const router = Router();
 
@@ -38,7 +40,7 @@ router.get('/update/:id', async (req, res) => {
   res.render('ads/update', data);
 })
 
-router.post('/update/:id', async (req, res) => {
+router.post('/update/:id', upload, async (req, res) => {
   const session: any = req.session;
   const user = session.user;
 
@@ -48,13 +50,23 @@ router.post('/update/:id', async (req, res) => {
   }
 
   const adId = req.params.id;
-  const { path, category } = req.body;
+  const { category } = req.body;
 
-  let ad;
+  const file = req.file;
+  const path = file?.filename;
+
+  console.log(file)
+
+  let ad: any;
 
   if (!path) {
     ad = await AdsModel.findByIdAndUpdate(adId, { category });
   } else {
+
+    const prevAd: any = await AdsModel.findById(adId);
+    const file = "static/ads/" + prevAd.path;
+    await deleteFile(file);
+
     ad = await AdsModel.findByIdAndUpdate(adId, { path, category });
   }
 

@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "tsc --build && tailwindcss -i src/main.css -o static/main.css && node dist/index.js",
     "dev": "nodemon dist/index.js",
-    "build:css": "postcss src/main.css -o static/main.css"
+    "build:css": "tailwindcss -i src/main.css -o static/main.css"
   },
   "keywords": [],
   "author": "",
