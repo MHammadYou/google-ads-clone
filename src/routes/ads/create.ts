@@ -27,7 +27,7 @@ router.get('/create', async (req, res) => {
   res.render('ads/create-ad', data);
 })
 
-router.post('/create', upload.single('path'), async (req, res) => {
+router.post('/create', upload, async (req, res) => {
 
   const session: any = req.session;
   const username = session.user;
@@ -49,7 +49,6 @@ router.post('/create', upload.single('path'), async (req, res) => {
     user: user._id
   }
 
-  // const newAd = new AdModel(data)
   const newAd = new AdModel(data);
   try {
     await newAd.save();
