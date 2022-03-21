@@ -2,6 +2,7 @@ import { Router } from "express";
 import AdModel from "../../models/ads";
 import UsersModel from "../../models/users";
 import CategoriesModel from "../../models/categories";
+import upload from "../../multer_config";
 
 const router = Router();
 
@@ -26,7 +27,7 @@ router.get('/create', async (req, res) => {
   res.render('ads/create-ad', data);
 })
 
-router.post('/create', async (req, res) => {
+router.post('/create', upload.single('path'), async (req, res) => {
 
   const session: any = req.session;
   const username = session.user;
@@ -37,7 +38,10 @@ router.post('/create', async (req, res) => {
     return;
   }
 
-  const { path, category } = req.body;
+  const file = req.file;
+  const path = file?.filename;
+
+  const { category } = req.body;
 
   const data = {
     path,
