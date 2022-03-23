@@ -27,18 +27,21 @@ app.use(
   })
 );
 
-mongoose.connect(DB_URI,  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false } )
-  .then(res => {
-    console.log("Connected to the database");
-    app.listen(PORT, () => console.log(`Listening on https//localhost: ${PORT}`));
-  })
-  .catch(err => {
-    console.log(err);
-  })
+(async () => {
+  try {
+    const res = await mongoose.connect(DB_URI,  { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, useFindAndModify: false } );
+    if (res) {
+      console.log("Connected to the database");
+      app.listen(PORT, () => console.log(`Listening on https//localhost: ${PORT}`));
+    }
+  } catch (error) {
+    console.log(error);
+  }
+})();
 
 
 handleRoutes(app);
 
 app.use((req, res) => {
-  res.status(404).send("No content on this route")
+  res.status(404).send("Not found")
 });
