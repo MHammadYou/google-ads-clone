@@ -17,7 +17,7 @@ router.get('/signup', (req, res) => {
     title: "Signup",
     dir: "..",
     user
-  }
+  };
   res.render('users/signup', data);
 })
 
@@ -31,7 +31,7 @@ router.post('/signup', async (req, res) => {
     email: req.body.email,
     password: hash,
     accountType: req.body.accountType,
-  }
+  };
 
   const user = new UserModel(data);
   try {
@@ -42,6 +42,6 @@ router.post('/signup', async (req, res) => {
   } catch (error) {
     res.send(error);
   }
-})
+});
 
 export default router;

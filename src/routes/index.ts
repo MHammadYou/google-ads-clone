@@ -8,7 +8,9 @@ import changePasswordRoute from "./users/change-password";
 import contentRoute from "./content";
 import { adViewRoutes, adCreateRoute, adUpdateRoute, adDeleteRoute } from "./ads";
 
-const handleRoutes = (app: any) => {
+import express from "express";
+
+const handleRoutes = (app: express.Express) => {
   app.use('/', homeRoute);
   app.use('/users/', signupRoute);
   app.use('/users/', loginRoute);
@@ -21,6 +23,10 @@ const handleRoutes = (app: any) => {
   app.use('/ads', adCreateRoute);
   app.use('/ads', adUpdateRoute);
   app.use('/ads', adDeleteRoute);
+
+  app.use((req, res) => {
+    res.status(404).send("Not found")
+  });
 }
 
 export default handleRoutes;
