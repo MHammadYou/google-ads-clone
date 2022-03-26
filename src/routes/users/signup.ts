@@ -26,18 +26,18 @@ router.post('/signup', async (req, res) => {
   const password = req.body.password;
   const hash = await bcrypt.hash(password, 10);
 
-  const data = {
+  const userData = {
     username: req.body.username,
     email: req.body.email,
     password: hash,
     accountType: req.body.accountType,
   };
 
-  const user = new UserModel(data);
+  const user = new UserModel(userData);
   try {
     await user.save();
     const session: any = req.session;
-    session.user = data.username;
+    session.user = userData.username;
     res.redirect('/');
   } catch (error) {
     res.send(error);
