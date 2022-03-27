@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import session from "express-session";
+import flash from "connect-flash";
 
 import handleRoutes from "./routes";
 
@@ -17,6 +18,7 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.static('static'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(flash());
 
 app.use(
   session({

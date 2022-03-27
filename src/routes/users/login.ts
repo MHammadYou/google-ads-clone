@@ -1,6 +1,7 @@
 import { Router } from "express";
 import UserModel from "../../models/users";
 import bcrypt from "bcrypt";
+import { getFlashMsg, flashMsg, Code } from "../../util";
 
 const router = Router();
 
@@ -17,6 +18,7 @@ router.get('/login', async (req, res) => {
     title: "Login",
     dir: "..",
     user,
+    ...getFlashMsg(req)
   }
   res.render('users/login', data);
 })
@@ -32,11 +34,14 @@ router.post('/login', async (req, res) => {
       if (match) {
         const session: any = req.session;
         session.user = user.username;
+        flashMsg(req, "Login successful!");
         res.redirect('/');
       } else {
+        flashMsg(req, "Email and password didn't match", Code.Error);
         res.redirect('/users/login');
       }
     } else {
+      flashMsg(req, "Email and password didn't match", Code.Error);
       res.redirect('/users/login');
     }
   } catch (error) {

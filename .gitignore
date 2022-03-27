@@ -8,7 +8,7 @@
 
 *.jpg
 *.png
-./static/main.css
+static/*.css
 
 # User-specific stuff
 .idea/**/workspace.xml

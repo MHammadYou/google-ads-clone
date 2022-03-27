@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { getFlashMsg } from "../util";
 
 const router = Router();
 
@@ -9,9 +10,12 @@ router.get('/', async (req, res) => {
     title: "Ads Platform",
     dir: ".",
     user,
+    ...getFlashMsg(req)
   }
+
   res.render("index", data);
 })
 
 export default router;
+
 

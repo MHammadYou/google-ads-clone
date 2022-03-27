@@ -1,0 +1,12 @@
+<% if (flash_message != "") { %>
+
+    <div class="container mx-auto">
+        <% if (flash_code == "ok") { %>
+            <div class="bg-teal-100 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+        <% } else if (flash_code == "error") { %>
+            <div class="bg-red-100 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+        <% } %>
+                <span class="block sm:inline"><%= flash_message %></span>
+            </div>
+    </div>
+<% } %>
