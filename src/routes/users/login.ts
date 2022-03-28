@@ -34,8 +34,7 @@ router.post('/login', async (req, res) => {
       if (match) {
         const session: any = req.session;
         session.user = user.username;
-        flashMsg(req, "Login successful!");
-        res.redirect('/');
+        res.redirect('/dashboard');
       } else {
         flashMsg(req, "Email and password didn't match", Code.Error);
         res.redirect('/users/login');

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+<%-  include('./partials/header') %>
+<div class="flex flex-col md:flex-row" style="width: 100%">
+    <nav aria-label="alternative nav">
+        <div class="bg-indigo-600 h-20 z-10 w-full md:w-48 content-center" style="height: 89.4vh">
+            <div class="md:mt-12 md:w-48 md:fixed md:left-0 md:top-0 content-center md:content-start text-left justify-between">
+                <ul class="list-reset mt-16 flex flex-row md:flex-col pt-3 md:py-3 px-1 md:px-2 text-center md:text-left">
+                    <li class="mr-3 flex-1">
+                        <a href="<%= dir %>/ads" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-white-800">
+                            <i class="fas fa-tasks pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Ads</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="<%= dir %>/ads/create" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-white-800">
+                            <i class="fa fa-envelope pr-0 md:pr-3"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-gray-400 md:text-gray-200 block md:inline-block">Create New</span>
+                        </a>
+                    </li>
+                    <li class="mr-3 flex-1">
+                        <a href="<%= dir %>/users/profile" class="block py-1 md:py-3 pl-1 align-middle text-white no-underline hover:text-white border-b-2 border-white-600">
+                            <i class="fas fa-chart-area pr-0 md:pr-3 text-blue-600"></i><span class="pb-1 md:pb-0 text-xs md:text-base text-white md:text-white block md:inline-block">Profile</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+    </nav>
+    <section style="width: 100%">
+        <div id="main" class="main-content flex-1 pb-24 md:pb-5" style="width: 100%">
+
+            <div class="bg-indigo-600 pt-4">
+                <div class="rounded-tl-3xl bg-gradient-to-r p-4 shadow text-2xl text-white">
+                    <h1 class="font-bold pl-2 text-decoration-line: underline"><%= user.username %></h1>
+                </div>
+            </div>
+
+            <div class="flex flex-wrap">
+                <div class="w-full w-1/2 p-6">
+                    <!--Metric Card-->
+                    <div class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-600 rounded-lg shadow-xl p-5">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded-full p-5 bg-indigo-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h2 class="font-bold uppercase text-gray-600">Total Ads</h2>
+                                <p class="font-bold text-3xl"><%= ads.length %> <span class="text-indigo-500"><i class="fas fa-caret-up"></i></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>
+                <div class="w-full w-1/2 p-6">
+                    <!--Metric Card-->
+                    <div class="bg-gradient-to-b from-indigo-200 to-indigo-100 border-b-4 border-indigo-500 rounded-lg shadow-xl p-5">
+                        <div class="flex flex-row items-center">
+                            <div class="flex-shrink pr-4">
+                                <div class="rounded-full p-5 bg-indigo-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                            </div>
+                            <div class="flex-1 text-right md:text-center">
+                                <h2 class="font-bold uppercase text-gray-600">Account Balance</h2>
+                                <p class="font-bold text-3xl">$<%= user.balance %> <span class="text-indigo-500"><i class="fas fa-exchange-alt"></i></span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/Metric Card-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+</html>

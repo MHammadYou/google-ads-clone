@@ -54,7 +54,7 @@ router.post('/signup', async (req, res) => {
     const session: any = req.session;
     session.user = userData.username;
     flashMsg(req, "Account created successfully");
-    res.redirect('/');
+    res.redirect('/dashboard');
   } catch (error) {
     res.send(error);
   }

@@ -1,4 +1,5 @@
 import homeRoute from "./home";
+import dashboardRoute from "./dashboard";
 import signupRoute from "./users/signup";
 import loginRoute from "./users/login";
 import logoutRoute from "./users/logout";
@@ -12,6 +13,7 @@ import express from "express";
 
 const handleRoutes = (app: express.Express) => {
   app.use('/', homeRoute);
+  app.use('/', dashboardRoute);
   app.use('/users/', signupRoute);
   app.use('/users/', loginRoute);
   app.use('/users/', logoutRoute);

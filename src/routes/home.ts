@@ -6,6 +6,12 @@ const router = Router();
 router.get('/', async (req, res) => {
   const session: any = req.session;
   const user = session.user;
+
+  if (user) {
+    res.redirect('/dashboard');
+    return;
+  }
+
   const data = {
     title: "Ads Platform",
     dir: ".",
