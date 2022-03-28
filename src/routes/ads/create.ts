@@ -55,7 +55,7 @@ router.post('/create', upload, async (req, res) => {
   try {
     await newAd.save();
     flashMsg(req, "Ad created successfully");
-    res.redirect("/users/profile");
+    res.redirect("/dashboard");
   } catch (error) {
     console.log(error);
     flashMsg(req, "Something went wrong", Code.Error);

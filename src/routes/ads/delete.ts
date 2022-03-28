@@ -22,7 +22,7 @@ router.get('/delete/:id', upload, async (req, res) => {
     const file = "static/ads/" + response.path;
     await deleteFile(file);
     flashMsg(req, "Ad deleted successfully");
-    res.redirect('/users/profile');
+    res.redirect('/dashboard');
   } else {
     res.send("No ad with this ID");
   }

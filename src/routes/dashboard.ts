@@ -1,6 +1,6 @@
 import { Router } from "express";
 import UsersModel from "../models/users";
-import {Code, flashMsg} from "../util";
+import {Code, flashMsg, getFlashMsg} from "../util";
 import AdsModel from "../models/ads";
 
 const router = Router();
@@ -23,7 +23,8 @@ router.get('/dashboard', async (req, res) => {
     title: "Ads Platform",
     dir: ".",
     user,
-    ads
+    ads,
+    ...getFlashMsg(req)
   }
   res.render("dashboard", data);
 })

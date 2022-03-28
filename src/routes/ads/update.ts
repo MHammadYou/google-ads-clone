@@ -2,7 +2,7 @@ import { Router } from "express";
 import AdsModel from "../../models/ads";
 import upload from "../../multer_config";
 import CategoriesModel from "../../models/categories";
-import { deleteFile, flashMsg, getFlashMsg } from "../../util";
+import { deleteFile, flashMsg, getFlashMsg, Code } from "../../util";
 
 const router = Router();
 
@@ -46,6 +46,7 @@ router.post('/update/:id', upload, async (req, res) => {
   const user = session.user;
 
   if (!user) {
+    flashMsg(req, "You must signup first", Code.Error);
     res.redirect('/users/login');
     return;
   }
@@ -74,7 +75,7 @@ router.post('/update/:id', upload, async (req, res) => {
     return;
   }
   flashMsg(req, "Ad updated successfully");
-  res.redirect('/users/profile');
+  res.redirect('/dashboard');
 })
 
 export default router;
