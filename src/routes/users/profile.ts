@@ -1,6 +1,7 @@
 import { Router } from "express";
 import UsersModel from "../../models/users";
 import AdsModel from "../../models/ads";
+import {getFlashMsg} from "../../util";
 
 const router = Router();
 
@@ -20,7 +21,8 @@ router.get('/profile', async (req, res) => {
     title: "Profile",
     dir: "..",
     user,
-    ads
+    ads,
+    ...getFlashMsg(req)
   }
   res.render('users/profile', data);
 })

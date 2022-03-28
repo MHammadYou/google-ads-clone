@@ -2,7 +2,7 @@ import { Router } from "express";
 import AdsModel from "../../models/ads";
 import upload from "../../multer_config";
 import CategoriesModel from "../../models/categories";
-import { deleteFile } from "../../util";
+import { deleteFile, flashMsg, getFlashMsg } from "../../util";
 
 const router = Router();
 
@@ -35,7 +35,8 @@ router.get('/update/:id', async (req, res) => {
     user,
     ad,
     categories,
-    selectedCategory
+    selectedCategory,
+    ...getFlashMsg(req)
   }
   res.render('ads/update', data);
 })
@@ -55,8 +56,6 @@ router.post('/update/:id', upload, async (req, res) => {
   const file = req.file;
   const path = file?.filename;
 
-  console.log(file)
-
   let ad: any;
 
   if (!path) {
@@ -74,6 +73,7 @@ router.post('/update/:id', upload, async (req, res) => {
     res.send("No ad with this id");
     return;
   }
+  flashMsg(req, "Ad updated successfully");
   res.redirect('/users/profile');
 })
 

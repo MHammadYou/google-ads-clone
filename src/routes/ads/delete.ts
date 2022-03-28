@@ -1,7 +1,7 @@
 import { Router } from "express";
 import AdsModel from "../../models/ads";
 import upload from "../../multer_config";
-import { deleteFile } from "../../util";
+import { deleteFile, flashMsg } from "../../util";
 
 const router = Router();
 
@@ -21,6 +21,7 @@ router.get('/delete/:id', upload, async (req, res) => {
   if (response) {
     const file = "static/ads/" + response.path;
     await deleteFile(file);
+    flashMsg(req, "Ad deleted successfully");
     res.redirect('/users/profile');
   } else {
     res.send("No ad with this ID");

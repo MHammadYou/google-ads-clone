@@ -1,6 +1,7 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
 import UsersModel from "../../models/users";
+import {flashMsg, getFlashMsg} from "../../util";
 
 const router = Router();
 
@@ -18,7 +19,8 @@ router.get('/change-password', async (req, res) => {
   const data = {
     title: "Change password",
     dir: "..",
-    user
+    user,
+    ...getFlashMsg(req)
   }
   res.render('users/change-password', data);
 })

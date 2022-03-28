@@ -1,6 +1,7 @@
-import { Router } from "express";
+import {Router} from "express";
 import UserModel from "../../models/users";
 import bcrypt from "bcrypt";
+import { Code, flashMsg, getFlashMsg } from "../../util";
 
 const router = Router();
 
@@ -16,7 +17,8 @@ router.get('/signup', (req, res) => {
   const data = {
     title: "Signup",
     dir: "..",
-    user
+    user,
+    ...getFlashMsg(req)
   };
   res.render('users/signup', data);
 })
@@ -33,11 +35,25 @@ router.post('/signup', async (req, res) => {
     accountType: req.body.accountType,
   };
 
+  const existingUsername = await UserModel.findOne({ username: userData.username });
+  const existingEmail = await UserModel.findOne({ email: userData.email });
+
+  if (existingUsername) {
+    flashMsg(req, "Username Already exists", Code.Error)
+    res.redirect('/users/signup');
+    return;
+  } else if (existingEmail) {
+    flashMsg(req, "An account with this email exists", Code.Error)
+    res.redirect('/users/signup');
+    return;
+  }
+
   const user = new UserModel(userData);
   try {
     await user.save();
     const session: any = req.session;
     session.user = userData.username;
+    flashMsg(req, "Account created successfully");
     res.redirect('/');
   } catch (error) {
     res.send(error);

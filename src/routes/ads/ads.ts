@@ -1,4 +1,5 @@
 import { Router } from "express";
+import {getFlashMsg} from "../../util";
 
 const router = Router();
 
@@ -8,7 +9,8 @@ router.get('/', async (req, res) => {
   const data = {
     title: "Ads",
     dir: "..",
-    user
+    user,
+    ...getFlashMsg(req)
   }
   res.render('ads/ads', data);
 })

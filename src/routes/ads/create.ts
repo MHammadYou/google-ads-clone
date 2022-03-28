@@ -3,6 +3,7 @@ import AdModel from "../../models/ads";
 import UsersModel from "../../models/users";
 import CategoriesModel from "../../models/categories";
 import upload from "../../multer_config";
+import {Code, flashMsg, getFlashMsg} from "../../util";
 
 const router = Router();
 
@@ -22,7 +23,8 @@ router.get('/create', async (req, res) => {
     title: "Create ad",
     dir: "..",
     user,
-    categories
+    categories,
+    ...getFlashMsg(req)
   }
   res.render('ads/create-ad', data);
 })
@@ -32,7 +34,7 @@ router.post('/create', upload, async (req, res) => {
   const session: any = req.session;
   const username = session.user;
 
-  const user = await UsersModel.findOne({ username }).exec();
+  const user = await UsersModel.findOne({ username });
   if (!user) {
     res.send("No such user in the database");
     return;
@@ -52,9 +54,12 @@ router.post('/create', upload, async (req, res) => {
   const newAd = new AdModel(data);
   try {
     await newAd.save();
+    flashMsg(req, "Ad created successfully");
     res.redirect("/users/profile");
   } catch (error) {
-    res.send(error);
+    console.log(error);
+    flashMsg(req, "Something went wrong", Code.Error);
+    res.redirect("/ads/create");
   }
 })
 
