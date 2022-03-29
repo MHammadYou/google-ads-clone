@@ -3,16 +3,24 @@ import AdsModel from "../../models/ads";
 import upload from "../../multer_config";
 import CategoriesModel from "../../models/categories";
 import { deleteFile, flashMsg, getFlashMsg, Code } from "../../util";
+import UsersModel from "../../models/users";
 
 const router = Router();
 
 
 router.get('/update/:id', async (req, res) => {
   const session: any = req.session;
-  const user = session.user;
+  const username = session.user;
 
-  if (!user) {
+  if (!username) {
     res.redirect('/users/login');
+    return;
+  }
+
+  const user: any = await UsersModel.findOne({ username });
+
+  if (user.accountType == "publisher") {
+    res.redirect('/dashboard');
     return;
   }
 
@@ -21,6 +29,13 @@ router.get('/update/:id', async (req, res) => {
 
   if (!ad) {
     res.send("No ad with this id");
+  }
+
+  const adUser: any = await UsersModel.findById(ad.user);
+
+  if (!(adUser.username == user.username)) {
+    res.redirect("/dashboard");
+    return;
   }
 
   const category: any = await CategoriesModel.findById(ad.category);
@@ -46,7 +61,7 @@ router.post('/update/:id', upload, async (req, res) => {
   const user = session.user;
 
   if (!user) {
-    flashMsg(req, "You must signup first", Code.Error);
+    flashMsg(req, "You must login first", Code.Error);
     res.redirect('/users/login');
     return;
   }

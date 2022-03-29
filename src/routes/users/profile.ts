@@ -15,7 +15,14 @@ router.get('/profile', async (req, res) => {
   }
 
   const user: any = await UsersModel.findOne({ username })
-  const ads = await AdsModel.find({ user: user._id });
+
+  let ads;
+
+  if (user.accountType == "advertiser") {
+    ads = await AdsModel.find({ user: user._id });
+  } else {
+    ads = await AdsModel.find();
+  }
 
   const data = {
     title: "Profile",

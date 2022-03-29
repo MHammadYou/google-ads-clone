@@ -5,7 +5,7 @@ import UsersModel from "../models/users";
 const router = Router();
 
 
-router.get('/get-iframe', async (req, res) => {
+router.get('/get-iframe/:id', async (req, res) => {
   const session: any = req.session;
   const username = session.user;
 
@@ -21,7 +21,8 @@ router.get('/get-iframe', async (req, res) => {
     return;
   }
 
-  const ad = await AdsModel.find();
+  const adId = req.params.id;
+  const ad = await AdsModel.findById(adId);
   
   res.send(ad);
 })
