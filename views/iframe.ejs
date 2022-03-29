@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+<body>
+<%-  include('./partials/header') %>
+<div style="display: flex; justify-content: center;" class="mt-16">
+    <div class="flex flex-col w-full w-1/2 p-6 shadow-md cursor-pointer w-96 hover:-translate-y-1 duration-300">
+        <div class="inline relative group h-48">
+            <img class="absolute rounded-t object-cover h-full w-full" src="<%= dir %>/ads/<%= ad.path%>" alt="Product Preview" />
+        </div>
+        <div class="mt-3">
+            <span class="bg-gray-200"><%= frame %></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
