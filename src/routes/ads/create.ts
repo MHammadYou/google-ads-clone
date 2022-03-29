@@ -1,4 +1,5 @@
 import { Router } from "express";
+import fs from "fs";
 import AdModel from "../../models/ads";
 import UsersModel from "../../models/users";
 import CategoriesModel from "../../models/categories";
@@ -17,6 +18,19 @@ router.get('/create', async (req, res) => {
     return;
   }
 
+  const adsDir = "./static/ads";
+
+  if (!fs.existsSync(adsDir)) {
+    console.log('Ads dir not found!!!');
+    fs.mkdir(adsDir, { recursive: true }, function(err) {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log("Created ads dir");
+      }
+    })
+  }
+
   const categories = await CategoriesModel.find();
 
   const data = {
@@ -33,6 +47,8 @@ router.post('/create', upload, async (req, res) => {
 
   const session: any = req.session;
   const username = session.user;
+
+
 
   const user = await UsersModel.findOne({ username });
   if (!user) {
