@@ -6,7 +6,7 @@ import logoutRoute from "./users/logout";
 import profileRoute from "./users/profile";
 import changeUsernameRoute from "./users/change-username";
 import changePasswordRoute from "./users/change-password";
-import iframeRoutes from "./get-frame";
+import iframeRoutes from "./get-iframe";
 import { adViewRoutes, adCreateRoute, adUpdateRoute, adDeleteRoute } from "./ads";
 
 import express from "express";
