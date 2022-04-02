@@ -1,7 +1,7 @@
-import { Router } from "express";
+import {Router} from "express";
 import UserModel from "../../models/users";
 import bcrypt from "bcrypt";
-import { getFlashMsg, flashMsg, Code } from "../../util";
+import {Code, flashMsg, getFlashMsg} from "../../util";
 
 const router = Router();
 
@@ -26,6 +26,16 @@ router.get('/login', async (req, res) => {
 router.post('/login', async (req, res) => {
 
   const { email, password } = req.body;
+
+  if (email.length < 1) {
+    flashMsg(req, "Invalid Email", Code.Error);
+    return;
+  }
+
+  if (password.length < 1) {
+    flashMsg(req, "Invalid password", Code.Error);
+    return;
+  }
 
   try {
     const user = await UserModel.findOne({ email })
