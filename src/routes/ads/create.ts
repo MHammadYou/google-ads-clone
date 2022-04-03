@@ -63,8 +63,12 @@ router.post('/create', upload, async (req, res) => {
 
   const file = req.file;
   const path = file?.filename;
-
   const { category } = req.body;
+
+  if (category.length < 0) {
+    flashMsg(req, "Invalid category", Code.Error);
+    return;
+  }
 
   const data = {
     path,
