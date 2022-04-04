@@ -27,13 +27,15 @@ router.post('/login', async (req, res) => {
 
   const { email, password } = req.body;
 
-  if (email.length < 1) {
+  if (!email) {
     flashMsg(req, "Invalid Email", Code.Error);
+    res.redirect('users/login');
     return;
   }
 
-  if (password.length < 1) {
+  if (!password) {
     flashMsg(req, "Invalid password", Code.Error);
+    res.redirect('users/login');
     return;
   }
 

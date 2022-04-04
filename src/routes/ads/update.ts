@@ -4,6 +4,7 @@ import upload from "../../multer_config";
 import CategoriesModel from "../../models/categories";
 import { deleteFile, flashMsg, getFlashMsg, Code } from "../../util";
 import UsersModel from "../../models/users";
+import path from "path";
 
 const router = Router();
 
@@ -70,11 +71,25 @@ router.post('/update/:id', upload, async (req, res) => {
   const { category } = req.body;
 
   const file = req.file;
-  const path = file?.filename;
+  const _path: any = file?.filename;
+
+  if (!category) {
+    flashMsg(req, "Invalid category", Code.Error);
+    res.redirect(`/ads/update/${adId}`);
+    return;
+  }
+
+  const exten = path.extname(_path);
+
+  if (exten != ".jpg" && exten != ".png") {
+    flashMsg(req, "Invalid file", Code.Error);
+    res.redirect(`/ads/update/${adId}`);
+    return;
+  }
 
   let ad: any;
 
-  if (!path) {
+  if (!_path) {
     ad = await AdsModel.findByIdAndUpdate(adId, { category });
   } else {
 
@@ -82,7 +97,7 @@ router.post('/update/:id', upload, async (req, res) => {
     const file = "static/ads/" + prevAd.path;
     await deleteFile(file);
 
-    ad = await AdsModel.findByIdAndUpdate(adId, { path, category });
+    ad = await AdsModel.findByIdAndUpdate(adId, { path: _path, category });
   }
 
   if (!ad) {

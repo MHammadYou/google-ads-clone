@@ -1,5 +1,6 @@
-import { Router } from "express";
+import {Router} from "express";
 import fs from "fs";
+import path from "path";
 import AdModel from "../../models/ads";
 import UsersModel from "../../models/users";
 import CategoriesModel from "../../models/categories";
@@ -62,16 +63,25 @@ router.post('/create', upload, async (req, res) => {
   }
 
   const file = req.file;
-  const path = file?.filename;
+  const _path: any = file?.filename;
   const { category } = req.body;
 
-  if (category.length < 0) {
+  if (!category) {
     flashMsg(req, "Invalid category", Code.Error);
+    res.redirect("/ads/create");
+    return;
+  }
+
+  const exten = path.extname(_path)
+
+  if (exten != ".jpg" && exten != ".png") {
+    flashMsg(req, "Invalid file", Code.Error);
+    res.redirect("/ads/create");
     return;
   }
 
   const data = {
-    path,
+    path: _path,
     category,
     user: user._id
   }
