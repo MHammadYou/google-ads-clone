@@ -10,8 +10,7 @@ router.get('/logout', async (req, res) => {
     res.redirect('/');
     return;
   }
-
-  req.session.destroy(response => {});
+  req.session.destroy(response => console.log(response));
   res.redirect("/");
 })
 
