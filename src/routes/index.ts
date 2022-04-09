@@ -7,7 +7,7 @@ import profileRoute from "./users/profile";
 import changeUsernameRoute from "./users/change-username";
 import changePasswordRoute from "./users/change-password";
 import iframeRoutes from "./get-iframe";
-import { adViewRoutes, adCreateRoute, adUpdateRoute, adDeleteRoute } from "./ads";
+import adsRoutes from "./ads";
 
 import express from "express";
 
@@ -21,10 +21,7 @@ const handleRoutes = (app: express.Express) => {
   app.use('/users/', changeUsernameRoute);
   app.use('/users/', changePasswordRoute);
   app.use('/get-iframe/', iframeRoutes);
-  app.use('/ads', adViewRoutes);
-  app.use('/ads', adCreateRoute);
-  app.use('/ads', adUpdateRoute);
-  app.use('/ads', adDeleteRoute);
+  app.use('/ads', adsRoutes);
 
   app.use((req, res) => {
     res.status(404).send("Not found")

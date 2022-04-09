@@ -79,13 +79,17 @@ router.post('/update/:id', upload, async (req, res) => {
     return;
   }
 
-  const exten = path.extname(_path);
+  if (_path) {
+    const exten = path.extname(_path);
 
-  if (exten != ".jpg" && exten != ".png") {
-    flashMsg(req, "Invalid file", Code.Error);
-    res.redirect(`/ads/update/${adId}`);
-    return;
+    if (exten != ".jpg" && exten != ".png") {
+      flashMsg(req, "Invalid file", Code.Error);
+      res.redirect(`/ads/update/${adId}`);
+      return;
+    }
   }
+
+
 
   let ad: any;
 
