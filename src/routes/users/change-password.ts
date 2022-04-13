@@ -1,7 +1,7 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
 import UsersModel from "../../models/users";
-import {flashMsg, getFlashMsg} from "../../util";
+import { getFlashMsg } from "../../util";
 
 const router = Router();
 

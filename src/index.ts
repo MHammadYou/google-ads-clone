@@ -11,7 +11,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
-const DB_URI = "mongodb://127.0.0.1:27017/ads-test-db";
+const DB_URI = process.env.DB_URI || "mongodb://127.0.0.1:27017/ads-test-db";
 
 app.set('view engine', 'ejs');
 

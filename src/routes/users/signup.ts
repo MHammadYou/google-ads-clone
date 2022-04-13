@@ -1,4 +1,4 @@
-import {Router} from "express";
+import { Router } from "express";
 import UserModel from "../../models/users";
 import bcrypt from "bcrypt";
 import { Code, flashMsg, getFlashMsg } from "../../util";

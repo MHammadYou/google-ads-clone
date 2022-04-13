@@ -1,7 +1,7 @@
 import { Router } from "express";
 import UsersModel from "../../models/users";
 import AdsModel from "../../models/ads";
-import {getFlashMsg} from "../../util";
+import { getFlashMsg } from "../../util";
 
 const router = Router();
 
