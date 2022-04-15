@@ -1,7 +1,7 @@
 import { Router } from "express";
 import bcrypt from "bcrypt";
 import UsersModel from "../../models/users";
-import { getFlashMsg } from "../../util";
+import {Code, flashMsg, getFlashMsg} from "../../util";
 
 const router = Router();
 
@@ -36,6 +36,12 @@ router.post('/change-password', async (req, res) => {
 
   const user: any = await UsersModel.findOne({ username })
   const { password } = req.body;
+
+  if (!password) {
+    flashMsg(req, "Invalid password", Code.Error);
+    res.redirect('users/login');
+    return;
+  }
 
   user.password = await bcrypt.hash(password, 10);
   user.save();

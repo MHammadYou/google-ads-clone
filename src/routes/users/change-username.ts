@@ -36,6 +36,12 @@ router.post('/change-username', async (req, res) => {
   const user: any = await UsersModel.findOne({ username: _username })
   const { username } = req.body;
 
+  if (!username) {
+    flashMsg(req, "Invalid username", Code.Error);
+    res.redirect('users/login');
+    return;
+  }
+
   const userExistOrNot = await UsersModel.findOne({ username });
 
   if (userExistOrNot) {
